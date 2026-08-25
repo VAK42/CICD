@@ -23,7 +23,8 @@ export default function HealthStatusPanel() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
   const [lastFetchedTime, setLastFetchedTime] = useState<string>("");
-  const backendBaseUrl = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:5000";
+  const rawBackendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:5000";
+  const backendBaseUrl = rawBackendUrl.replace(/\/+$/, "");
   const fetchHealthStatus = async () => {
     setIsLoading(true);
     try {
@@ -94,7 +95,7 @@ export default function HealthStatusPanel() {
         <div className="healthDashboardBody">
           <div className="healthServiceItem">
             <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-              <Server size={14} color="#38bdf8" />
+              <Server size={14} color="var(--textSecondary)" />
               <div>
                 <div className="serviceItemName">Express Server</div>
                 <div style={{ fontSize: "0.65rem", color: "var(--textSecondary)" }}>
@@ -108,7 +109,7 @@ export default function HealthStatusPanel() {
           </div>
           <div className="healthServiceItem">
             <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-              <Database size={14} color="#34d399" />
+              <Database size={14} color="var(--textSecondary)" />
               <div>
                 <div className="serviceItemName">Supabase Database</div>
                 <div style={{ fontSize: "0.65rem", color: "var(--textSecondary)" }}>
@@ -122,7 +123,7 @@ export default function HealthStatusPanel() {
           </div>
           <div className="healthServiceItem">
             <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-              <Activity size={14} color="#f472b6" />
+              <Activity size={14} color="var(--textSecondary)" />
               <div>
                 <div className="serviceItemName">Upstash Redis</div>
                 <div style={{ fontSize: "0.65rem", color: "var(--textSecondary)" }}>
