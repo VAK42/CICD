@@ -30,7 +30,7 @@ jobs:
         run: npm install
       - name: Run Health Check
         working-directory: backend
-        run: npm check
+        run: npm test
   cd:
     name: Continuous Deployment
     needs: ci
