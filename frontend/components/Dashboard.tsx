@@ -28,20 +28,27 @@ export default function HealthStatusPanel() {
   const fetchHealthStatus = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch(`${backendBaseUrl}/health`);
+      const response = await fetch("/api/health");
       const data: AggregatedHealthResponse = await response.json();
       setHealthData(data);
       setLastFetchedTime(new Date().toLocaleTimeString());
     } catch (error) {
-      setHealthData({
-        status: "Backend Disconnected",
-        services: {
-          server: { status: "Unreachable", message: "Render Backend Offline" },
-          supabase: { status: "Unreachable", message: "Unable To Query Service" },
-          redis: { status: "Unreachable", message: "Unable To Query Service" }
-        }
-      });
-      setLastFetchedTime(new Date().toLocaleTimeString());
+      try {
+        const directResponse = await fetch(`${backendBaseUrl}/health`);
+        const directData: AggregatedHealthResponse = await directResponse.json();
+        setHealthData(directData);
+        setLastFetchedTime(new Date().toLocaleTimeString());
+      } catch (directError) {
+        setHealthData({
+          status: "Backend Disconnected",
+          services: {
+            server: { status: "Unreachable", message: "Render Backend Offline" },
+            supabase: { status: "Unreachable", message: "Unable To Query Service" },
+            redis: { status: "Unreachable", message: "Unable To Query Service" }
+          }
+        });
+        setLastFetchedTime(new Date().toLocaleTimeString());
+      }
     } finally {
       setIsLoading(false);
     }
