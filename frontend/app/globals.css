@@ -180,11 +180,6 @@ html, body {
   border-color: var(--accentPrimary);
   font-weight: 400;
 }
-.actionBtn.danger {
-  background: #e74c3c;
-  border-color: #e74c3c;
-  color: var(--textPrimary);
-}
 .categoryDivider {
   font-size: 0.6875rem;
   font-weight: 400;

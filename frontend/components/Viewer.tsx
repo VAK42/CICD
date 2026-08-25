@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js";
-import { ChevronDown, ChevronUp, Play, Pause, X, Compass, Globe } from "lucide-react";
+import { ChevronDown, ChevronUp, X, Compass, Globe } from "lucide-react";
 import { Lensflare, LensflareElement } from "three/examples/jsm/objects/Lensflare.js";
 import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer.js";
 import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
@@ -717,7 +717,6 @@ export default function SolarSystemViewer() {
                 onClick={() => setIsPaused(!isPaused)}
                 className={`actionBtn ${isPaused ? "active" : ""}`}
               >
-                {isPaused ? <Play size={12} style={{ display: "inline", marginRight: "4px" }} /> : <Pause size={12} style={{ display: "inline", marginRight: "4px" }} />}
                 <span>{isPaused ? "Resume Orbit" : "Pause Orbit"}</span>
               </button>
               <button
@@ -749,7 +748,7 @@ export default function SolarSystemViewer() {
                 <span>Follow Sun</span>
               </button>
               {followingTargetName && (
-                <button onClick={stopFollowing} className="actionBtn danger">
+                <button onClick={stopFollowing} className="actionBtn">
                   <span>Reset Camera</span>
                 </button>
               )}
