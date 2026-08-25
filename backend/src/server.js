@@ -4,11 +4,9 @@ import cors from "cors";
 import { getAggregatedHealth } from "./healthService.js";
 const expressApp = express();
 const serverPort = process.env.PORT || 5000;
-expressApp.use(cors({
-  origin: "*",
-  methods: ["GET", "POST", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"]
-}));
+expressApp.set("trust proxy", 1);
+expressApp.use(cors({ origin: true, credentials: true }));
+expressApp.options("*", cors());
 expressApp.use(express.json());
 expressApp.get("/", (req, res) => {
   res.json({
