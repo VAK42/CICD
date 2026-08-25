@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "node --watch src/server.js",
-    "check": "node src/healthCheck.js"
+    "test": "node src/healthCheck.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.49.1",
