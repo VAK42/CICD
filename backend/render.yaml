@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: backend
+    env: node
+    plan: free
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: Port
+        value: 10000
+      - key: SupabaseUrl
+        sync: false
+      - key: SupabaseKey
+        sync: false
+      - key: UpstashRedisRestUrl
+        sync: false
+      - key: UpstashRedisRestToken
+        sync: false
